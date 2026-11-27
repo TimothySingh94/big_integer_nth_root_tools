@@ -28,3 +28,10 @@ The trade-off is speed: integer Newton converges in a logarithmic number of step
 `n = 0` returns `0` for any positive `k`. `k = 1` returns `n`. Negative `n` and non-positive `k` raise `ValueError`; non-integer arguments raise `TypeError`.
 
 When `n` is one less than a perfect kth power, the floor is one less than the exact root. For example, `integer_nth_root(10**100 - 1, 10)` is `9999999999`, not `10**10`.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
